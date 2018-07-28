@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="jumbotron" id='pg_grad'>
+    <div class="center">
+
+        <div class="card" style="width: 80%;">
+            <h5 class="card-header">
+                TASK NAME:<em> {{ object.name }} </em>
+            </h5>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>TASK NAME: </strong> {{ object.name }} 
+                    </li>
+                    <li class="list-group-item"><strong>PENDING FOR: </strong> {{ object.created_at | timesince }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong> DESCRIPTION: </strong>{{ object.description}}
+                    </li>
+                    <li class="list-group-item">
+                        <strong> COMPLETED: </strong>{{ object.status}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

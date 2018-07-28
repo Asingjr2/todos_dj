@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% load static %}
+    <div class="jumbotron" id='pg_grad'>
+            <form method="post" id="update_form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-success">
+                    UPDATE
+                </button>
+            </form>
+    </div>
+
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src=' {% static "task/jquery.js" %}'></script>
+{% endblock %}

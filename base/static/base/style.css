@@ -1,0 +1,49 @@
+#lg_button {
+    outline: 5 px black solid;
+    
+}
+
+#brown {
+    background-color: brown
+}
+
+#flt_left {
+    float:left;
+}
+
+
+#center{
+    align-content: center;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
+#fl{
+    float:left;
+}
+#main{
+    border:px black solid;
+}
+
+#mt{
+    margin-top:20px;
+}
+#smt{
+    margin-top:5px;
+}
+#side_margin {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#pg_grad{
+    background: linear-gradient(to right, rgba(255,0,0,.3), rgb(59, 83, 163));
+}
+#wp_grad{
+    background: linear-gradient(to right, rgba(255,0,0,0), rgb(243, 154, 154));
+}
+#text_white{
+    color:white;
+    text-decoration: none;
+
+}
