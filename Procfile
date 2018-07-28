@@ -1,1 +1,1 @@
-web: gunicorn todo.wsgi
+web: gunicorn todos_dj.wsgi
