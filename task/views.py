@@ -27,6 +27,7 @@ class RegisterView(View):
         """ Overriding base post method to encrpyt user password and validate registration from data"""
         form = self.form_class(request.POST)
         if form.is_valid():
+            print("form valid")
             user = form.save(commit = False)
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
@@ -34,6 +35,7 @@ class RegisterView(View):
             user.save()
             return redirect("/login")
         else:
+            print("form not valid")
             if 'username' in form.errors:
                 messages.warning(request, 'Username does not meet requirements.  Please try again.')
             if 'password' in form.errors:
