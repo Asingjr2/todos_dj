@@ -143,7 +143,10 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "task/task_detail.html"
-    total_tasks = Task.objects.all().count()
+    if(Task.objects.all().count() > 0):
+        total_tasks = Task.objects.all().count()
+    else:
+        total_tasks = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
