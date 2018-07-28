@@ -98,7 +98,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
     # If valid form work correctly...need something if it doesn't
     def form_valid(self, form): 
-        form.instance.creator = self.request.user
+        form.instance.creator = self.request.user.id
         self.object = form.save()
         return redirect("/home")
 
