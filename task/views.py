@@ -143,15 +143,15 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "task/task_detail.html"
-    if(Task.objects.all().count() > 0):
-        total_tasks = Task.objects.all().count()
-    else:
-        total_tasks = 0
+    # if(Task.objects.all().count() > 0):
+    #     total_tasks = Task.objects.all().count()
+    # else:
+    #     total_tasks = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["create_form"] = TaskCreateForm
-        context["total_tasks"] = self.total_tasks
+        # context["total_tasks"] = self.total_tasks
         return context
 
 
