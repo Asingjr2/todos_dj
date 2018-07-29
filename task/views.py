@@ -80,29 +80,31 @@ class HomeView(LoginRequiredMixin, View):
     queryset = Task.objects.all()
 
     def get(self, request):
-        total_tasks = Task.objects.all().count()
+        total_tasks = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
         return render(request, self.template_name, {"total_tasks":total_tasks})
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     """ Create view for new tasks with defined html template name paired with object"""
     model = Task 
-    fields = ["name", "description", "creator"]
+    fields = ["name", "description"]
     template_name = "task/task_create.html"
     template_name_suffix = "_create"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["total_tasks"] = Task.objects.all().count()
+        context["total_tasks"] = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
         return context
 
     # If valid form work correctly...need something if it doesn't
     def form_valid(self, form): 
         form.instance.creator = self.request.user
         self.object = form.save()
+        print("success")
         return redirect("/home")
 
     def form_invalid(self, form):
+        print(form.errors)
         if "name" in form.errors:
             messages.warning(self.request, 'Name must be between 5 and 100 characters')
         if "description" in form.errors:
@@ -114,6 +116,12 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ["name", "description"]
     template_name = "task/task_update.html"
+    success_url = "/all_tasks"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["total_tasks"] = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
+        return context
 
 
 class TaskListView(LoginRequiredMixin, ListView): 
@@ -122,7 +130,7 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["total_tasks"] = Task.objects.all().count()
+        context["total_tasks"] = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
         return context
 
     def get_queryset(self, *args, **kwargs):
@@ -145,15 +153,11 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "task/task_detail.html"
-    # if(Task.objects.all().count() > 0):
-    #     total_tasks = Task.objects.all().count()
-    # else:
-    #     total_tasks = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["create_form"] = TaskCreateForm
-        # context["total_tasks"] = self.total_tasks
+        context["total_tasks"] = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
         return context
 
 

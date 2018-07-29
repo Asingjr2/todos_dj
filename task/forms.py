@@ -26,4 +26,4 @@ class LoginForm(forms.Form):
 class TaskCreateForm(ModelForm):
     class Meta:
         model = Task
-        fields = ("name", "description")
+        fields = ("name", "description", "creator")
