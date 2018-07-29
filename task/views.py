@@ -9,6 +9,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import RedirectView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
 from .models import Task
@@ -159,6 +160,20 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
         context["create_form"] = TaskCreateForm
         context["total_tasks"] = Task.objects.all().filter(creator__id = str(self.request.user.id)).count()
         return context
+
+
+class StatusUpdateView(View):
+    """ View updating task status.  """
+    lookup_field = "pk"
+
+    def post(self, request, pk):
+        task = Task.objects.get(id = pk)
+        if(request.POST["change"] == "to_yes"):
+            task.status = "YES"
+        else:
+            task.status = "NO"
+        task.save()
+        return redirect("/home")
 
 
 def logout_view(request):

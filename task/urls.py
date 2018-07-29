@@ -10,6 +10,7 @@ from .views import (
     TaskCreateView,
     TaskUpdateView,
     HomeView, 
+    StatusUpdateView
 )
 
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path("<uuid:pk>/", TaskDetailView.as_view(), name="task_detail"),
     path("delete/<uuid:pk>", TaskDeleteView.as_view(), name="task_delete"),
     path("all_tasks", TaskListView.as_view(), name="all_tasks"),
+    path("status_update/<uuid:pk>", StatusUpdateView.as_view(), name="status_update")
 ]

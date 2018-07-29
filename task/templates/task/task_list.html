@@ -29,18 +29,16 @@
                     </td>
                     <td> {{ obj.created_at }}</td>
                     <td>
-                        <form action="/update/{{ obj.id }}" method="post">
+                        <form action="{% url 'status_update' obj.id %}" method="post">
                             {% csrf_token %}
-                            <!-- <input type="hidden" name="id" value="{{ obj.id }}"> -->
-                            <input type="hidden" name="status" value="YES">
-                            <button class="btn btn-success" id="smt">COMPELTE</button>
+                            <input type="hidden" name="change" value="to_yes">
+                            <button class="btn btn-success" id="smt">COMPLETE</button>
                         </form>
-                        <form action="/update/{{ obj.id }}" method="post">
-                                {% csrf_token %}
-                                <!-- <input type="hidden" name="id" value="{{ obj.id }}"> -->
-                                <input type="hidden" name="status" value="NO">
-                                <button id="smt" class="btn btn-warning">PENDING</button>
-                            </form>
+                        <form action="{% url 'status_update' obj.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="change" value="to_no">
+                            <button id="smt" class="btn btn-warning">PENDING</button>
+                        </form>
                     </td>
 
                     <td>
