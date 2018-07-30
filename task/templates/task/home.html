@@ -1,17 +1,18 @@
 {% extends 'layout.html' %}
 {% block body %}
-<section>
+  <section>
     <div class="jumbotron brown" id='pg_grad'>
-        <div>
-            <div class="display-4 brown">
-                <a href="{% url 'task_create' %}">CREATE NEW TASK</a>
-            </div><br>
-            <div class="display-4" id='mt'>
-                <!-- <button class="btn btn-information" id="lg_button"> -->
-                    <a href="{% url 'all_tasks' %}">SEE ALL TASKS</a>
-                <!-- </button> -->
-            </div>
+      <div>
+        <div class="display-4 brown">
+          <a href="{% url 'task_create' %}">CREATE NEW TASK</a>
         </div>
+        <br>
+        <div class="display-4" id='mt'>
+          <!-- <button class="btn btn-information" id="lg_button"> -->
+          <a href="{% url 'all_tasks' %}">SEE ALL TASKS</a>
+          <!-- </button> -->
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 {% endblock %}

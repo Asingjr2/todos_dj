@@ -1,29 +1,28 @@
 {% extends 'layout.html' %}
 {% block body %}
 {% load static %}
-    <div class="jumbotron" id='pg_grad'>
-        {% if messages %}
+  <div class="jumbotron" id='pg_grad'>
+      {% if messages %}
         <div class="alet alert-success alert-dismissable">
-            {% for message in messages %} 
+          {% for message in messages %} 
             <p>{{ message }}</p>
-            {% endfor %} 
+          {% endfor %} 
         </div> 
-        {% endif %}
-        <form action="{% url 'task_create' %}" method="post" class="create_form">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" class="form-control">
-                <small class="form-text text-muted">Cannot be blank</small>
-            </div>
+      {% endif %}
 
+      <form action="{% url 'task_create' %}" method="post" class="create_form">
+          {% csrf_token %}
             <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" class="form-control">
-                <small class="form-text text-muted">Cannot be blank</small>
+              <label for="name">Name</label>
+              <input type="text" name="name" class="form-control">
+              <small class="form-text text-muted">Cannot be blank</small>
             </div>
-
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description" class="form-control">
+              <small class="form-text text-muted">Cannot be blank</small>
+            </div>
             <button class="btn btn-primary" >SAVE TASK</button>
-        </form>
+      </form>
     </div >
 {% endblock %}

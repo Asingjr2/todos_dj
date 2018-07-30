@@ -25,18 +25,17 @@ class RegisterView(View):
         return render(request, self.template_name, {"form":form})
 
     def post(self, request):
-        """ Overriding base post method to encrpyt user password and validate registration from data"""
+        """ Overriding base post method to encrpyt user password and validate registration from data."""
+
         form = self.form_class(request.POST)
         if form.is_valid():
-            print("form valid")
-            user = form.save(commit = False)
+            user = form.save(commit=False)
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
             user.set_password(password)
             user.save()
             return redirect("/login")
         else:
-            print("form not valid")
             if 'username' in form.errors:
                 messages.warning(request, 'Username does not meet requirements.  Please try again.')
             if 'password' in form.errors:
@@ -76,7 +75,9 @@ class HomeView(LoginRequiredMixin, View):
     
     Has django mixin requiring credentials or 
     the user will be redirected to the login screen.
+
     """
+
     template_name = "task/home.html"
     queryset = Task.objects.all()
 
@@ -86,7 +87,8 @@ class HomeView(LoginRequiredMixin, View):
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
-    """ Create view for new tasks with defined html template name paired with object"""
+    """Create view for new tasks with defined html template name paired with object."""
+
     model = Task 
     fields = ["name", "description"]
     template_name = "task/task_create.html"
@@ -163,7 +165,8 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 
 class StatusUpdateView(View):
-    """ View updating task status.  """
+    """View updating task status."""
+
     lookup_field = "pk"
 
     def post(self, request, pk):
@@ -177,6 +180,7 @@ class StatusUpdateView(View):
 
 
 def logout_view(request):
-    """ Clears session data created at login"""
+    """Clears session data created at login."""
+
     logout(request)
     return redirect("/login")

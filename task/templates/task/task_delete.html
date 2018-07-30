@@ -1,12 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %}"
-    <div class="jumbotron" id='pg_grad'>
-        <form method="post">
-            {% csrf_token %}
-            <h4>Are you sure you want to delete "TASK: {{ object.name }}"?</h4>
-            <button class="btn btn-danger">
-                CONFIRM
-            </button>
-        </form>
-    </div>
+  <div class="jumbotron" id='pg_grad'>
+    <form method="post">
+      {% csrf_token %}
+      <h4>Are you sure you want to delete "TASK: {{ object.name }}"?</h4>
+      <button class="btn btn-danger">CONFIRM</button>
+    </form>
+  </div>  
 {% endblock %}
