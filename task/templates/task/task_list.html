@@ -14,8 +14,8 @@
           <th>#</th>
           <th>NAME</th>
           <th>CREATED</th>
-          <th>CHANGE STATUS</th>
-          <th> UPDATE | REMOVE</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       
@@ -25,7 +25,7 @@
           <td>{{ forloop.counter }}</td>
           <td><a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a></td>
           <td> {{ obj.created_at }}</td>
-          <td>
+          <!-- <td>
             <form action="{% url 'status_update' obj.id %}" method="post">
               {% csrf_token %}
               <input type="hidden" name="change" value="to_yes">
@@ -36,11 +36,13 @@
               <input type="hidden" name="change" value="to_no">
               <button id="smt" class="btn btn-warning">PENDING</button>
             </form>
-          </td>
+          </td> -->
           <td>
             <button  id="smt" class="btn btn-success">
               <a  href="{% url 'task_update' obj.id %}" id='text_white'>UPDATE</a>
             </button>
+          </td>
+          <td>
             <form action="{% url 'task_delete' obj.id %}">
               <button id="smt" class="btn btn-danger">DELETE</button>
             </form>

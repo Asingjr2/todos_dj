@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "task",
-    "base"
+    "base",
+    "crispy_forms"
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = "bootstrap4" 

@@ -1,15 +1,21 @@
 {% extends 'layout.html' %}
+
 {% block body %}
+
 {% load static %}
-  <div class="jumbotron" id='pg_grad'>
+
+{% load crispy_forms_tags %}
+
+<div class="jumbotron" id='pg_grad'>
     <form method="post" id="update_form">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form | crispy}}
       <button class="btn btn-success">UPDATE</button>
     </form>
   </div>
 
 {% endblock %}
+
 {% block extra_js %}
   <script type="text/javascript" src=' {% static "task/jquery.js" %}'></script>
 {% endblock %}
